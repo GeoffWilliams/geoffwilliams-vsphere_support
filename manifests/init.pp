@@ -58,7 +58,7 @@ class vsphere_support(
   File {
     owner => "root",
     group => "root",
-    mode  => "0644",
+    mode  => "0600",
   }
 
   package { $packages:
