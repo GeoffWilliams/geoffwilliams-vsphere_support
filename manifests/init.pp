@@ -47,12 +47,12 @@ class vsphere_support(
     $gem_packages= $vsphere_support::params::gem_packages,
     $config_file = $vsphere_support::params::config_file,
     $gem_provider= $vsphere_support::params::gem_provider,
-    $vsphere_host,
-    $vspere_user,
-    $vsphere_password,
-    $vsphere_port,
-    $vsphere_insecure = false,
-    $vsphere_ssl = false,
+    $vcenter_host,
+    $vcenter_user,
+    $vcenter_password,
+    $vcenter_port,
+    $vcenter_insecure = false,
+    $vcenter_ssl = false,
 ) inherits vsphere_support::params {
 
   File {
@@ -67,7 +67,7 @@ class vsphere_support(
 
   file { $config_file:
     ensure  => file,
-    content => template("${module_name}/vsphere.conf.erb"),
+    content => template("${module_name}/vcenter.conf.erb"),
   }
 
   package { $gem_packages:
