@@ -1,56 +1,49 @@
 # Class: vsphere_support
 # ===========================
 #
-# Full description of class vsphere_support here.
+# Install prerequisites for the `puppetlabs-vsphere` module
 #
 # Parameters
 # ----------
-#
-# Document parameters here.
-#
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
-#
-# Variables
-# ----------
-#
-# Here you should define a list of variables that this module would require.
-#
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
-#
-# Examples
-# --------
-#
-# @example
-#    class { 'vsphere_support':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
-#
+# [*vcenter_host*]
+#   Hostname or IP address of vcenter server
+# [*vcenter_user*]
+#   User to login to vcenter as
+# [*vcenter_password*]
+#   Password to login to vcenter with
+# [*vcenter_port*]
+#   Port for vcenter API
+# [*package*]
+#   List of packages to install
+# [*gem_packages*]
+#   List of rubygems to install
+# [*config_file*]
+#   Final system path for vcenter.conf
+# [*gem_provider*]
+#   Provider to use for package resources installed using gem
+# [*vcenter_insecure*]
+#   Used directly by vsphere module - see https://forge.puppetlabs.com/puppetlabs/vsphere
+# [*vcenter_ssl*]
+#   Used directly by vsphere module - see https://forge.puppetlabs.com/puppetlabs/vsphere
 # Authors
 # -------
 #
-# Author Name <author@domain.com>
+# Geoff Williams <geoff.williams@puppetlabs.com>
 #
 # Copyright
 # ---------
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# Copyright 2015 Puppet Labs, unless otherwise noted.
 #
 class vsphere_support(
-    $packages    = $vsphere_support::params::packages,
-    $gem_packages= $vsphere_support::params::gem_packages,
-    $config_file = $vsphere_support::params::config_file,
-    $gem_provider= $vsphere_support::params::gem_provider,
     $vcenter_host,
     $vcenter_user,
     $vcenter_password,
     $vcenter_port,
+    $packages    = $vsphere_support::params::packages,
+    $gem_packages= $vsphere_support::params::gem_packages,
+    $config_file = $vsphere_support::params::config_file,
+    $gem_provider= $vsphere_support::params::gem_provider,
     $vcenter_insecure = false,
     $vcenter_ssl = false,
 ) inherits vsphere_support::params {

@@ -15,10 +15,7 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
-
+Install the package requirements of the vpshere module and :
 ## Module Description
 
 If applicable, this section should have a brief description of the technology
