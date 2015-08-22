@@ -15,62 +15,51 @@
 
 ## Overview
 
-Install the package requirements of the vpshere module and :
-## Module Description
-
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+Install the package requirements of the vpshere module and configure the module
+by creating `vcenter.conf` containing the logon details for the VCenter server.
 
 ## Setup
 
 ### What vsphere_support affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
-
-### Beginning with vsphere_support
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+* Installs software requirements for the [puppetlabs-vsphere](https://forge.puppetlabs.com/puppetlabs/vsphere) 
+  module
+* Creates a file at `/etc/puppetlabs/puppet/vcenter.conf` which is needed to
+  configure `puppetlabs-vsphere` to connect to VCenter for VM provisioning
 
 ## Usage
+Install all software requirements and configure connection to VCenter.  Hiera
+users are recommended to configure [hiera-eyaml](https://github.com/TomPoulton/hiera-eyaml)
+to encrypt the vcenter_password in git.
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
-
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+```puppet
+class { "vsphere_support":
+  vcenter_host     => "vsphere.megacorp.com",
+  vcenter_user     => "admin",
+  vcenter_password => "topsecret",
+  vcenter_port     => 9999
+}
+```
 
 ## Limitations
-
-This is where you list OS compatibility, version compatibility, etc.
+* Not supported by Puppet Labs
 
 ## Development
+Pull Requests welcome
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+## Testing
+This module ships with RSpec tests.  To run them, first prepare your system:
+```shell
+bundle install
+```
 
-## Release Notes/Contributors/Etc **Optional**
+You may then run the tests at will.  If downloading from GitHub from behind a
+proxy server, you will need to have your `http_proxy` and `https_proxy` 
+variables exported
+```shell
+bundle exec rake spec
+```
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+It is suggested to have your CI server execute these tests before allowing code
+to be published to the puppet master
+
