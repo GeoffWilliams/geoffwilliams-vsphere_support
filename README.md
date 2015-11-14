@@ -1,4 +1,5 @@
 # vsphere_support
+[![Build Status](https://travis-ci.org/GeoffWilliams/geoffwilliams-vsphere_support.svg)](https://travis-ci.org/GeoffWilliams/geoffwilliams-vsphere_support)
 
 #### Table of Contents
 
